@@ -77,7 +77,7 @@ if ((!isset($_SESSION['username']))) {
 <div class="row">
 <div class="col-md-3"></div>
 <div class="col-md-6 panel" style="background-color:lightblue; min-height:430px;">
-<h2 align="center" style="font-family:'typo'; color:white">FEEDBACK</h2>
+<h2 align="center" style="font-family:'typo'; color:white">UmpanBalik</h2>
 <div style="font-size:14px;margin-top:20px"><br />
 <?php
 if (@$_GET['q'])
