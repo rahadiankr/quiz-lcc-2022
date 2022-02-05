@@ -2,11 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <link rel="icon" href="favicon.ico" type="image/icon" sizes="16x16">
+    <link rel="icon" href="./image/favicon.png" type="image/icon" sizes="16x16">
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Skill's Breaker</title>
+    <title>LCC 2022</title>
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/bootstrap-theme.min.css" />
     <link rel="stylesheet" href="css/main.css">
@@ -31,7 +31,7 @@ include_once 'dbConnection.php';
     <div class="header">
         <div class="row">
             <div class="col-lg-6">
-                <span class="logo">Skill's Breaker</span>
+                <span class="logo">LCC 2022</span>
             </div>
             <div class="col-md-4 col-md-offset-2">
                 <?php
@@ -44,7 +44,10 @@ include_once 'dbConnection.php';
                     $username = $_SESSION['username'];
 
                     include_once 'dbConnection.php';
-                    echo '<span class="pull-right top title1" ><span style="color:white"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;Hello,</span> <span class="log log1" style="color:lightyellow">' . $username . '&nbsp;&nbsp;|&nbsp;&nbsp;<a href="logout.php?q=account.php" style="color:lightyellow"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;Logout</button></a></span>';
+                    echo '<span class="pull-right top title1" >
+                    <span style="color:white">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true">
+                    <span class="log log1" style="color:lightyellow">' . $username . '&nbsp;&nbsp;|&nbsp;&nbsp;<a href="logout.php?q=account.php" style="color:lightyellow"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;Logout</button></a></span>';
                 }
                 ?>
             </div>
@@ -60,7 +63,7 @@ include_once 'dbConnection.php';
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></a>
+                    <a class="navbar-brand" href="#"></a>
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
@@ -88,8 +91,14 @@ include_once 'dbConnection.php';
                     if (@$_GET['q'] == 1) {
 
                         $result = mysqli_query($con, "SELECT * FROM quiz WHERE status = 'enabled' ORDER BY date DESC") or die('Error');
-                        echo '<div class="panel"><table class="table table-striped title1"  style="vertical-align:middle">
-<tr><td style="vertical-align:middle"><b>S.N.</b></td><td style="vertical-align:middle"><b>Name</b></td><td style="vertical-align:middle"><b>Total question</b></td><td style="vertical-align:middle"><b>Correct Answer</b></td><td style="vertical-align:middle"><b>Wrong Answer</b></td><td style="vertical-align:middle"><b>Total Marks</b></td><td style="vertical-align:middle"><b>Time limit</b></td><td style="vertical-align:middle"><b>Action</b></td></tr>';
+                        echo '<div class="panel2"><table class="table table-striped title1" style="vertical-align:middle">
+                                <tr>
+                                <td style="vertical-align:middle"><b>S.N.</b></td>
+                                <td style="vertical-align:middle"><b>Name</b></td>
+                                <td style="vertical-align:middle"><b>Total Marks</b></td>
+                                <td style="vertical-align:middle"><b>Time limit</b></td>
+                                <td style="vertical-align:middle"><b>Action</b></td>
+                                </tr>';
                         $c = 1;
                         while ($row = mysqli_fetch_array($result)) {
                             $title   = $row['title'];
@@ -101,7 +110,7 @@ include_once 'dbConnection.php';
                             $q12 = mysqli_query($con, "SELECT score FROM history WHERE eid='$eid' AND username='$username'") or die('Error98');
                             $rowcount = mysqli_num_rows($q12);
                             if ($rowcount == 0) {
-                                echo '<tr><td style="vertical-align:middle">' . $c++ . '</td><td style="vertical-align:middle">' . $title . '</td><td style="vertical-align:middle">' . $total . '</td><td style="vertical-align:middle">+' . $correct . '</td><td style="vertical-align:middle">-' . $wrong . '</td><td style="vertical-align:middle">' . $correct * $total . '</td><td style="vertical-align:middle">' . $time . '&nbsp;min</td>
+                                echo '<tr><td style="vertical-align:middle">' . $c++ . '</td><td style="vertical-align:middle">' . $title . '</td><td style="vertical-align:middle">' . $total . '</td><td style="vertical-align:middle">+' . $time . '&nbsp;min</td>
   <td style="vertical-align:middle"><b><a href="account.php?q=quiz&step=2&eid=' . $eid . '&n=1&t=' . $total . '&start=start" class="btn" style="color:#FFFFFF;background:darkgreen;font-size:12px;padding:7px;padding-left:10px;padding-right:10px"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>&nbsp;<span><b>Start</b></span></a></b></td></tr>';
                             } else {
                                 $q = mysqli_query($con, "SELECT * FROM history WHERE username='$_SESSION[username]' AND eid='$eid' ") or die('Error197');
@@ -117,15 +126,15 @@ include_once 'dbConnection.php';
                                 $remaining = (($ttimec * 60) - ((time() - $timec)));
                                 if ($remaining > 0 && $qstatus == "enabled" && $status == "ongoing") {
                                     echo '<tr style="color:darkgreen"><td style="vertical-align:middle">' . $c++ . '</td><td style="vertical-align:middle">' . $title . '&nbsp;<span title="This quiz is already solve by you" class="glyphicon glyphicon-ok" aria-hidden="true"></span></td><td style="vertical-align:middle">' . $total . '</td><td style="vertical-align:middle">+' . $correct . '</td><td style="vertical-align:middle">-' . $wrong . '</td><td style="vertical-align:middle">' . $correct * $total . '</td><td style="vertical-align:middle">' . $time . '&nbsp;min</td>
-  <td style="vertical-align:middle"><b><a href="account.php?q=quiz&step=2&eid=' . $eid . '&n=1&t=' . $total . '&start=start" class="btn" style="margin:0px;background:darkorange;color:white">&nbsp;<span class="title1"><b>Continue</b></span></a></b></td></tr>';
+  <td style="vertical-align:middle"><b><a href="account.php?q=quiz&step=2&eid=' . $eid . '&n=1&t=' . $total . '&start=start" class="btn" style="margin:0px;background:darkorange;color:white;padding: 5px 5px;">&nbsp;<span class="title1"><b>Continue</b></span></a></b></td></tr>';
                                 } else {
-                                    echo '<tr style="color:darkgreen"><td style="vertical-align:middle">' . $c++ . '</td><td style="vertical-align:middle">' . $title . '&nbsp;<span title="This quiz is already solve by you" class="glyphicon glyphicon-ok" aria-hidden="true"></span></td><td style="vertical-align:middle">' . $total . '</td><td style="vertical-align:middle">+' . $correct . '</td><td style="vertical-align:middle">-' . $wrong . '</td><td style="vertical-align:middle">' . $correct * $total . '</td><td style="vertical-align:middle">' . $time . '&nbsp;min</td>
-  <td style="vertical-align:middle"><b><a href="account.php?q=result&eid=' . $eid . '" class="btn" style="margin:0px;background:darkred;color:white">&nbsp;<span class="title1"><b>View Result</b></span></a></b></td></tr>';
+                                    echo '<tr style="color:darkgreen"><td style="vertical-align:middle">' . $c++ . '</td><td style="vertical-align:middle">' . $title . '&nbsp;<span title="This quiz is already solve by you" class="glyphicon glyphicon-ok" aria-hidden="true"></span></td><td style="vertical-align:middle">' . $total . '</td><td style="vertical-align:middle">+' . $time . '&nbsp;min</td>
+  <td style="vertical-align:middle"><b><a href="account.php?q=result&eid=' . $eid . '" class="btn" style="margin:0px;background:darkred;color:white;padding: 5px 5px;">&nbsp;<span class="title1"><b>View Result</b></span></a></b></td></tr>';
                                 }
                             }
                         }
                         $c = 0;
-                        echo '</table></div><div class="panel" style="padding-top:1px;padding-left:15%;padding-right:15%;word-wrap:break-word"><h3 align="center" style="font-family:calibri">:: General Instructions ::</h3><br /><ul type="circle"><font style="font-size:14px;font-family:calibri">';
+                        echo '</table></div><div class="panel2" style="padding-top: 0px;padding-left: 1%;padding-right: 1%;word-wrap: break-word;"><h3 align="center" style="font-family:calibri">:: Peraturan LCC 2022 ::</h3><br /><ul type="circle" style="padding-inline-start: 20px;"><font style="font-size:14px;font-family:calibri">';
                         $file = fopen("instructions.txt", "r");
                         while (!feof($file)) {
                             echo '<li>';
@@ -522,7 +531,7 @@ var countdownTimer = setInterval(\'secondPassed()\', 1000);
                                     $username = $row['username'];
                                 }
                                 $c++;
-                                echo '<tr><td style="color:#99cc32"><b>' . $c . '</b></td><td style="vertical-align:middle">' . $name . '</td><td style="vertical-align:middle">' . $branch . '</td><td style="vertical-align:middle">' . $username . '</td><td style="vertical-align:middle">' . $s . '</td><td style="vertical-align:middle">';
+                                echo '<tr><td style="color:#99cc32"><b>' . $c . '</b></td><td style="vertical-align:middle">' . $name . '</td><td style="vertical-align:middle;word-break: break-word;">' . $branch . '</td><td style="vertical-align:middle;word-break: break-word;">' . $username . '</td><td style="vertical-align:middle;word-break: break-word;">' . $s . '</td><td style="vertical-align:middle">';
                             }
                         } else {
                         }
@@ -569,7 +578,7 @@ var countdownTimer = setInterval(\'secondPassed()\', 1000);
     <div class="row footer">
         <div class="col-md-2 box"></div>
         <div class="col-md-3 box">
-            <a href="#" data-toggle="modal" data-target="#developers" s style="color:lightyellow;" onmouseover="this.style('color:yellow')" target="new">Organized by Muki InfoTech,Erode</a>
+            <b href="#" style="color:lightyellow;" onmouseover="this.style('color:yellow')" target="new">Organized by ITC 2022</b>
         </div>
         <!-- Modal For Developers-->
         <div class="modal fade title1" id="developers">

@@ -220,3 +220,33 @@ hr {
     color: #fff;
     background-color: #5cb85c;
 }
+
+@media screen and (max-width: 600px) {
+    .panel {
+        border-color: #eee;
+        margin: 25px;
+        padding: 1px;
+        font: 15px "Century Gothic", "Times Roman", sans-serif;
+    }
+
+    .panel2 {
+        border-color: #eee;
+        margin: 0px;
+        padding: 1px;
+        font: 15px "Century Gothic", "Times Roman", sans-serif;
+    }
+
+    .top {
+        margin-top: -30px;
+    }
+
+    .log {
+        margin: 10px;
+        margin-right: 20px;
+        margin-left: 0px;
+        color: #ffffb3;
+        text-decoration: none;
+        font-size: 20px;
+        font-size: 15px;
+    }
+}
