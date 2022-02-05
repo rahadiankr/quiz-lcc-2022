@@ -3,7 +3,7 @@
 <head>
 <link rel="icon" href="favicon.ico" type="image/icon" sizes="16x16">
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>Skill's Breaker </title>
+<title>IT Competition LCC 2022</title>
   
  <link rel="stylesheet" href="css/main.css">
  <link  rel="stylesheet" href="css/font.css">
@@ -22,7 +22,7 @@ if (@$_GET['w']) {
 <body>
 <div class="row header">
 <div class="col-lg-6">
-<span class="logo">Skill's Breaker</span></div>
+<span class="logo">ITC LCC 2022</span></div>
 <div class="col-md-2">
 </div>
 <div class="col-md-4">
@@ -30,13 +30,13 @@ if (@$_GET['w']) {
 include_once 'dbConnection.php';
 session_start();
 if ((!isset($_SESSION['username']))) {
-    echo '<a href="#" class="pull-right logb btn btn-primary" data-toggle="modal" data-target="#myModal" style="color:white"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;<font style="font-size:12px;font-weight:bold">Login</font></a>&nbsp;';
+    echo '<a href="#" class="pull-right logb btn btn-primary" data-toggle="modal" data-target="#myModal" style="color:white"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;<font style="font-size:12px;font-weight:bold">Masuk</font></a>&nbsp;';
 } else {
     echo '<a href="logout.php?q=feedback.php" class="pull-right logb btn btn-primary" style="color:white"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;<font style="font-size:12px;font-weight:bold">Logout</font></a>&nbsp;';
 }
 ?>
 
-<a href="index.php" class="pull-right btn logb btn-primary" style="color:white"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;<font style="font-size:12px;font-weight:bold">Home</font></a>&nbsp;
+<a href="index.php" class="pull-right btn logb btn-primary" style="color:white"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;<font style="font-size:12px;font-weight:bold">Beranda</font></a>&nbsp;
 </div></div>
 <div class="modal fade" id="myModal">
   <div class="modal-dialog">
@@ -77,7 +77,7 @@ if ((!isset($_SESSION['username']))) {
 <div class="row">
 <div class="col-md-3"></div>
 <div class="col-md-6 panel" style="background-color:lightblue; min-height:430px;">
-<h2 align="center" style="font-family:'typo'; color:white">UmpanBalik</h2>
+<h2 align="center" style="font-family:'typo'; color:white">FeedBack Peserta</h2>
 <div style="font-size:14px;margin-top:20px"><br />
 <?php
 if (@$_GET['q'])
@@ -87,32 +87,32 @@ else {
 
 <form role="form"  method="post" action="feed.php?q=feedback.php">
 <div class="row">
-<div class="col-md-3"><b>Name:</b><br /><br /><br /><b>Subject:</b></div>
+<div class="col-md-3"><b>Nama Peserta :</b><br /><br /><br /><b>Asal Sekolah :</b></div>
 <div class="col-md-9">
 <!-- Text input-->
 <div class="form-group">
-  <input id="name" name="name" placeholder="Enter your name" class="form-control input-md" type="text"><br />    
-   <input id="name" name="subject" placeholder="Enter short description of your feedback" class="form-control input-md" type="text">    
+  <input id="name" name="name" placeholder="Masukan Nama Peserta" class="form-control input-md" type="text"><br />    
+   <input id="name" name="subject" placeholder="Asal Instansi" class="form-control input-md" type="text">    
 
 </div>
 </div>
 </div><!--End of row-->
 
 <div class="row">
-<div class="col-md-3"><b>E-Mail ID:</b></div>
+<div class="col-md-3"><b>Subjek :</b></div>
 <div class="col-md-9">
 <!-- Text input-->
 <div class="form-group">
-  <input id="email" name="email" placeholder="Enter your e-mail" class="form-control input-md" type="email">    
+  <input id="email" name="email" placeholder="Masukan Subjek Feedback disini" class="form-control input-md" type="email">    
  </div>
 </div>
 </div><!--End of row-->
 
 <div class="form-group"> 
-<textarea rows="5" cols="8" name="feedback" class="form-control" placeholder="Write feedback here. Keep it clean and simple."></textarea>
+<textarea rows="5" cols="8" name="feedback" class="form-control" placeholder="Tuliskan feedback anda disini."></textarea>
 </div>
 <div class="form-group" align="center">
-<font style="font-size:12px;font-weight:bold"><input type="submit" name="submit" value="Send My Feedback" class="btn btn-primary" /></font>
+<font style="font-size:12px;font-weight:bold"><input type="submit" name="submit" value="Kirim FeedBack" class="btn btn-primary" /></font>
 </div>
 </form>';
 }
@@ -124,9 +124,9 @@ else {
 <div class="row footer">
   <div class="col-md-2 box"></div>
 <div class="col-md-6 box">
-<span href="#" data-target="#login" style="color:lightyellow">Organized by abc<br><br></span></div>
+<span href="#" data-target="#login" style="color:lightyellow">Organized by: ITC UDINUS 2022<br><br></span></div>
 <div class="col-md-2 box">
-<span href="feedback.php" style="color:lightyellow;text-decoration:underline" onmouseover="this.style('color:yellow')">Feedback</span></div>
+<span href="feedback.php" style="color:lightyellow" onmouseover="this.style('color:yellow')">Feedback Peserta</span></div>
 
 </body>
 </html>
