@@ -1410,7 +1410,8 @@ body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 14px;
     line-height: 1.42857143;
-    color: rgb(255, 255, 255);
+    color: #333;
+    background-color: #fff
 }
 
 button,
@@ -6592,7 +6593,7 @@ a.list-group-item-danger.active:hover {
     margin-bottom: 20px;
     background-color: #fff;
     border: 1px solid transparent;
-    border-radius: 20px;
+    border-radius: 4px;
     -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
     box-shadow: 0 1px 1px rgba(0, 0, 0, .05)
 }
