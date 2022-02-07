@@ -15,7 +15,7 @@ if (isset($_SESSION['username']) && (!isset($_SESSION['key']))) {
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title> Skill's Breaker </title>
+  <title> IT Competition LCC 2022 </title>
 
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/font.css">
@@ -86,7 +86,7 @@ if (isset($_SESSION['username']) && (!isset($_SESSION['key']))) {
   <div class="header">
     <div class="row">
       <div class="col-lg-6" style="text-align: center;padding-top: 5px;">
-        <span class="logo">LCC 2022</span>
+        <span class="logo">IT Competiton LCC 2022</span>
       </div>
       <!-- <div class="col-md-2 col-md-offset-4">
         <a href="#" class="btn btn-primary logb" data-toggle="modal" data-target="#myModal"> <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;<span class="title1"><b> Login </b> </span></a>
@@ -183,7 +183,7 @@ if (isset($_SESSION['username']) && (!isset($_SESSION['key']))) {
                   <option value="" <?php
                                     if (!isset($_GET['gender']))
                                       echo "selected";
-                                    ?>>Select Gender</option>
+                                    ?>>Pilih Jenis Kelamin</option>
                   <option value="M" <?php
                                     if (isset($_GET['gender'])) {
                                       if ($_GET['gender'] == "M")

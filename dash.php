@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title> Admin || Skill's Breaker</title>
+    <title> Admin LCC 2021</title>
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/bootstrap-theme.min.css" />
     <link rel="stylesheet" href="css/main.css">
@@ -38,7 +38,7 @@
         <div class="header">
             <div class="row">
                 <div class="col-lg-6">
-                    <span class="logo">Skill's Breaker</span>
+                    <span class="logo">IT Competition 2022 || LCC</span>
                 </div>
                 <?php
                 include_once 'dbConnection.php';
