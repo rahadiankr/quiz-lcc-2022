@@ -13,7 +13,7 @@ body {
 
 .bg1 {
     background: url(../image/BK3.png);
-    min-height: 535px;
+    height: 90vh;
     background-repeat: round;
     background-color: #202020;
     -webkit-background-size: cover;
@@ -47,7 +47,10 @@ body {
     background: #0b8eca;
     height: 70px;
 }
-
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
 .logo {
     font-family: 'typo';
     font-size: 35px;
@@ -102,6 +105,10 @@ body {
     border-top: 1px solid;
     border-color: #323232;
     background-color: #202020;
+    position: absolute;
+    bottom: 0 !important;
+    width: 100vw;
+    height: 100px;
 }
 
 .footer a {

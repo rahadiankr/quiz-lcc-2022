@@ -299,7 +299,7 @@ if (isset($_SESSION['username']) && (!isset($_SESSION['key']))) {
             </div>
 
             <div class="form-group">
-              <label class="col-md-12control-label" for="cpassword"></label>
+              <label class="col-md-12 control-label" for="cpassword"></label>
               <div class="col-md-12">
                 <input id="cpassword" name="cpassword" placeholder="Konfirmasi Password" class="form-control input-md" type="password">
 
@@ -310,7 +310,7 @@ if (isset($_SESSION['username']) && (!isset($_SESSION['key']))) {
               <div class="col-md-12" style="text-align: center">
                 <input type="submit" value=" Register Now " class="btn btn-primary" style="text-align:center" />
               </div>
-              <div class="col-md-2 col-md-offset-4" style="text-align: center;">
+              <div class="col-md-12" style="text-align: center;">
                 <a href="#" class="btn btn-primary logb" data-toggle="modal" data-target="#myModal"> <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;<span class="title1"><b> Login </b> </span></a>
               </div>
             </div>
@@ -321,8 +321,8 @@ if (isset($_SESSION['username']) && (!isset($_SESSION['key']))) {
     </div>
   </div>
   </div>
-  <div class="row footer">
-    <div class="col-md-3 box">
+  <div class="footer">
+    <div class="col-md-5 box">
       <a href="#" data-toggle="modal" data-target="#login" style="color:lightyellow">Admin Login</a>
     </div>
     <div class="col-md-3 box">
