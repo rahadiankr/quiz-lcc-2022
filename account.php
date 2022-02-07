@@ -96,9 +96,6 @@ include_once 'dbConnection.php';
                                 <td style="vertical-align:middle"><b>No.</b></td>
                                 <td style="vertical-align:middle"><b>Soal</b></td>
                                 <td style="vertical-align:middle"><b>Jumlah Soal</b></td>
-                                <td style="vertical-align:middle"><b>Jawaban Benar</b></td>
-                                <td style="vertical-align:middle"><b>Jawaban Salah</b></td>
-                                <td style="vertical-align:middle"><b>Nilai Total</b></td>
                                 <td style="vertical-align:middle"><b>Waktu</b></td>
                                 <td style="vertical-align:middle"><b>Action</b></td>
                                 </tr>';
@@ -138,7 +135,7 @@ include_once 'dbConnection.php';
                             }
                         }
                         $c = 0;
-                        echo '</table></div><div class="panel2" style="padding-top: 0px;padding-left: 1%;padding-right: 1%;word-wrap: break-word;"><h3 align="center" style="font-family:calibri">:: Peraturan LCC 2022 ::</h3><br /><ul type="circle" style="padding-inline-start: 20px;"><font style="font-size:14px;font-family:calibri">';
+                        echo '</table></div><div class="panel2" style="padding-top: 0px;padding-left: 1%;padding-right: 1%;word-wrap: break-word;"><h3 align="center" style="font-family:calibri">:: Peraturan ITC LCC 2022 ::</h3><br /><ul type="circle" style="padding-inline-start: 20px;"><font style="font-size:14px;font-family:calibri">';
                         $file = fopen("instructions.txt", "r");
                         while (!feof($file)) {
                             echo '<li>';
