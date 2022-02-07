@@ -297,11 +297,11 @@ var countdownTimer = setInterval(\'secondPassed()\', 1000);
                                 $sn    = @$_GET['n'];
                                 $total = @$_GET['t'];
                                 $q     = mysqli_query($con, "SELECT * FROM questions WHERE eid='$eid' AND sn='$sn' ");
-                                echo '<div class="panel" style="margin-right:5%;margin-left:5%;margin-top:10px;border-radius:10px">';
+                                echo '<div class="panel" style="margin-right:5%;margin-left:5%;margin-top:10px;border-radius:10px" >';
                                 while ($row = mysqli_fetch_array($q)) {
                                     $qns = stripslashes($row['qns']);
                                     $qid = $row['qid'];
-                                    echo '<b><pre style="background-color:white"><div style="font-size:20px;font-weight:bold;font-family:calibri;margin:10px">' . $sn . ' : ' . $qns . '</div></pre></b>';
+                                    echo '<b><pre style="background-color:white" onmousedown="return false" onselectstart="return false"><div style="font-size:20px;font-weight:bold;font-family:calibri;margin:10px" onmousedown="return false" onselectstart="return false">' . $sn . ' : ' . $qns . '</div></pre></b>';
                                 }
 
                                 echo '<form id="qform" action="update.php?q=quiz&step=2&eid=' . $eid . '&n=' . $sn . '&t=' . $total . '&qid=' . $qid . '" method="POST"  class="form-horizontal">
