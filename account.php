@@ -21,7 +21,11 @@
         echo '<script>alert("' . @$_GET['w'] . '");</script>';
     }
     ?>
-
+    <script>
+        function logoutt() {
+            setTimeout("location.href = 'logout.php?q=account.php';", 7000);
+        }
+    </script>
 </head>
 <?php
 include_once 'dbConnection.php';
@@ -96,6 +100,9 @@ include_once 'dbConnection.php';
                                 <td style="vertical-align:middle"><b>No.</b></td>
                                 <td style="vertical-align:middle"><b>Soal</b></td>
                                 <td style="vertical-align:middle"><b>Jumlah Soal</b></td>
+                                <td style="vertical-align:middle"><b>Jawaban Benar</b></td>
+                                <td style="vertical-align:middle"><b>Jawaban Salah</b></td>
+                                <td style="vertical-align:middle"><b>Nilai Total</b></td>
                                 <td style="vertical-align:middle"><b>Waktu</b></td>
                                 <td style="vertical-align:middle"><b>Action</b></td>
                                 </tr>';
@@ -110,7 +117,7 @@ include_once 'dbConnection.php';
                             $q12 = mysqli_query($con, "SELECT score FROM history WHERE eid='$eid' AND username='$username'") or die('Error98');
                             $rowcount = mysqli_num_rows($q12);
                             if ($rowcount == 0) {
-                                echo '<tr><td style="vertical-align:middle">' . $c++ . '</td><td style="vertical-align:middle">' . $title . '</td><td style="vertical-align:middle">' . $total . '</td><td style="vertical-align:middle">+' . $time . '&nbsp;min</td>
+                                echo '<tr><td style="vertical-align:middle">' . $c++ . '</td><td style="vertical-align:middle">' . $title . '</td><td style="vertical-align:middle">' . $total . '</td><td style="vertical-align:middle">+' . $correct . '</td><td style="vertical-align:middle">-' . $wrong . '</td><td style="vertical-align:middle">' . $correct * $total . '</td><td style="vertical-align:middle">'  . $time . '&nbsp;min</td>
   <td style="vertical-align:middle"><b><a href="account.php?q=quiz&step=2&eid=' . $eid . '&n=1&t=' . $total . '&start=start" class="btn" style="color:#FFFFFF;background:darkgreen;font-size:12px;padding: 3px;padding-left: 5px;padding-right: 5px;"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>&nbsp;<span><b>Start</b></span></a></b></td></tr>';
                             } else {
                                 $q = mysqli_query($con, "SELECT * FROM history WHERE username='$_SESSION[username]' AND eid='$eid' ") or die('Error197');
@@ -127,15 +134,14 @@ include_once 'dbConnection.php';
                                 if ($remaining > 0 && $qstatus == "enabled" && $status == "ongoing") {
                                     echo '<tr style="color:darkgreen"><td style="vertical-align:middle">' . $c++ . '</td><td style="vertical-align:middle">' . $title . '&nbsp;<span title="This quiz is already solve by you" class="glyphicon glyphicon-ok" aria-hidden="true"></span></td><td style="vertical-align:middle">' . $total . '</td><td style="vertical-align:middle">+' . $correct . '</td><td style="vertical-align:middle">-' . $wrong . '</td><td style="vertical-align:middle">' . $correct * $total . '</td><td style="vertical-align:middle">' . $time . '&nbsp;min</td>
   <td style="vertical-align:middle"><b><a href="account.php?q=quiz&step=2&eid=' . $eid . '&n=1&t=' . $total . '&start=start" class="btn" style="margin:0px;background:darkorange;color:white;padding: 5px 5px;">&nbsp;<span class="title1"><b>Continue</b></span></a></b></td></tr>';
+                                } else {
+                                    echo '<tr style="color:darkgreen"><td style="vertical-align:middle">' . $c++ . '</td><td style="vertical-align:middle">' . $title . '&nbsp;<span title="This quiz is already solve by you" class="glyphicon glyphicon-ok" aria-hidden="true"></span></td><td style="vertical-align:middle">' . $total . '</td><td style="vertical-align:middle">+' . $time . '&nbsp;min</td>
+                                  <td style="vertical-align:middle"><b><a href="account.php?q=result&eid=' . $eid . '" class="btn" style="margin:0px;background:darkred;color:white;padding: 5px 5px;">&nbsp;<span class="title1"><b>View Result</b></span></a></b></td></tr>';
                                 }
-                                //                                 else {
-                                //                                     echo '<tr style="color:darkgreen"><td style="vertical-align:middle">' . $c++ . '</td><td style="vertical-align:middle">' . $title . '&nbsp;<span title="This quiz is already solve by you" class="glyphicon glyphicon-ok" aria-hidden="true"></span></td><td style="vertical-align:middle">' . $total . '</td><td style="vertical-align:middle">+' . $time . '&nbsp;min</td>
-                                //   <td style="vertical-align:middle"><b><a href="account.php?q=result&eid=' . $eid . '" class="btn" style="margin:0px;background:darkred;color:white;padding: 5px 5px;">&nbsp;<span class="title1"><b>View Result</b></span></a></b></td></tr>';
-                                //                                 }
                             }
                         }
                         $c = 0;
-                        echo '</table></div><div class="panel2" style="padding-top: 0px;padding-left: 1%;padding-right: 1%;word-wrap: break-word;"><h3 align="center" style="font-family:calibri">:: Peraturan ITC LCC 2022 ::</h3><br /><ul type="circle" style="padding-inline-start: 20px;"><font style="font-size:14px;font-family:calibri">';
+                        echo '</table></div><div class="panel2" style="padding-top: 0px;padding-left: 1%;padding-right: 1%;word-wrap: break-word;"><h3 align="center" style="font-family:calibri">:: Peraturan LCC 2022 ::</h3><br /><ul type="circle" style="padding-inline-start: 20px;"><font style="font-size:14px;font-family:calibri">';
                         $file = fopen("instructions.txt", "r");
                         while (!feof($file)) {
                             echo '<li>';
@@ -181,7 +187,7 @@ include_once 'dbConnection.php';
                                 $q = mysqli_query($con, "UPDATE `rank` SET `score`=$sun ,time=NOW() WHERE username= '$username'") or die('Error174');
                             }
                         }
-                        header('location:account.php?q=result&eid=' . $_GET[eid]);
+                        header('location:account.php?q=result&eid=' . $_GET['eid']);
                     }
 
                     if (@$_GET['q'] == 'quiz' && @$_GET['step'] == 2 && isset($_GET['start']) && $_GET['start'] == "start" && (!isset($_SESSION['6e447159425d2d']))) {
@@ -201,7 +207,7 @@ include_once 'dbConnection.php';
                             $remaining = (($ttimel * 60) - ((time() - $timel)));
                             if ($status == "ongoing" && $remaining > 0 && $qstatus == "enabled") {
                                 $_SESSION['6e447159425d2d'] = "6e447159425d2d";
-                                header('location:account.php?q=quiz&step=2&eid=' . $_GET[eid] . '&n=' . $_GET[n] . '&t=' . $_GET[t]);
+                                header('location:account.php?q=quiz&step=2&eid=' . $_GET['eid'] . '&n=' . $_GET['n'] . '&t=' . $_GET['t']);
                             } else {
                                 $q = mysqli_query($con, "UPDATE history SET status='finished' WHERE username='$_SESSION[username]' AND eid='$_GET[eid]' ") or die('Error197');
                                 $q = mysqli_query($con, "SELECT * FROM history WHERE eid='$_GET[eid]' AND username='$_SESSION[username]'") or die('Error156');
@@ -224,7 +230,7 @@ include_once 'dbConnection.php';
                                         $q = mysqli_query($con, "UPDATE `rank` SET `score`=$sun ,time=NOW() WHERE username= '$username'") or die('Error174');
                                     }
                                 }
-                                header('location:account.php?q=result&eid=' . $_GET[eid]);
+                                header('location:account.php?q=result&eid=' . $_GET['eid']);
                             }
                         } else {
                             $time = time();
@@ -266,7 +272,11 @@ function end(){
   data = prompt("Are you sure to end this Quiz? Remember, once finished, you wont be able to continue anymore and final results will be displayed. If you want to continue then enter \\"yes\\" in the textbox below and press enter");
   if(data=="yes"){
     window.location ="account.php?q=quiz&step=2&eid=' . $_GET["eid"] . '&n=' . $_GET["n"] . '&t=' . isset($_GET["total"]) . '&endquiz=end";
-  }
+    
+        
+    
+}
+
 }
 function enable(){
   document.getElementById("sbutton").removeAttribute("disabled");
@@ -383,7 +393,7 @@ var countdownTimer = setInterval(\'secondPassed()\', 1000);
                                         $q = mysqli_query($con, "UPDATE `rank` SET `score`=$sun ,time=NOW() WHERE username= '$username'") or die('Error174');
                                     }
                                 }
-                                header('location:account.php?q=result&eid=' . $_GET[eid]);
+                                header('location:account.php?q=result&eid=' . $_GET['eid']);
                             }
                         } else {
                             unset($_SESSION['6e447159425d2d']);
@@ -408,7 +418,7 @@ var countdownTimer = setInterval(\'secondPassed()\', 1000);
                                     $q = mysqli_query($con, "UPDATE `rank` SET `score`=$sun ,time=NOW() WHERE username= '$username'") or die('Error174');
                                 }
                             }
-                            header('location:account.php?q=result&eid=' . $_GET[eid]);
+                            header('location:account.php?q=result&eid=' . $_GET['eid']);
                         }
                     }
                     if (@$_GET['q'] == 'result' && @$_GET['eid']) {
@@ -433,52 +443,55 @@ var countdownTimer = setInterval(\'secondPassed()\', 1000);
     <tr style="color:red"><td style="vertical-align:middle">Wrong Answer&nbsp;<span class="glyphicon glyphicon-remove-arrow" aria-hidden="true"></span></td><td style="vertical-align:middle">' . $w . '</td></tr>
     <tr style="color:orange"><td style="vertical-align:middle">Unattempted&nbsp;<span class="glyphicon glyphicon-ban-arrow" aria-hidden="true"></span></td><td style="vertical-align:middle">' . ($total - $r - $w) . '</td></tr>
     <tr style="color:darkblue"><td style="vertical-align:middle">Score&nbsp;<span class="glyphicon glyphicon-star" aria-hidden="true"></span></td><td style="vertical-align:middle">' . $s . '</td></tr>';
+                            echo "<script>
+                            logoutt();
+                            </script>";
                             $q = mysqli_query($con, "SELECT * FROM rank WHERE  username='$username' ") or die('Error157');
                             while ($row = mysqli_fetch_array($q)) {
                                 $s = $row['score'];
                                 echo '<tr style="color:#990000"><td style="vertical-align:middle">Overall Score&nbsp;<span class="glyphicon glyphicon-stats" aria-hidden="true"></span></td><td style="vertical-align:middle">' . $s . '</td></tr>';
                             }
-                            echo '<tr></tr></table></div><div class="panel"><br /><h3 align="center" style="font-family:calibri">:: Detailed Analysis ::</h3><br /><ol style="font-size:20px;font-weight:bold;font-family:calibri;margin-top:20px">';
-                            $q = mysqli_query($con, "SELECT * FROM questions WHERE eid='$_GET[eid]'") or die('Error197');
-                            while ($row = mysqli_fetch_array($q)) {
-                                $question = $row['qns'];
-                                $qid      = $row['qid'];
-                                $q2 = mysqli_query($con, "SELECT * FROM user_answer WHERE eid='$_GET[eid]' AND qid='$qid' AND username='$_SESSION[username]'") or die('Error197');
-                                if (mysqli_num_rows($q2) > 0) {
-                                    $row1         = mysqli_fetch_array($q2);
-                                    $ansid        = $row1['ans'];
-                                    $correctansid = $row1['correctans'];
-                                    $q3 = mysqli_query($con, "SELECT * FROM options WHERE optionid='$ansid'") or die('Error197');
-                                    $q4 = mysqli_query($con, "SELECT * FROM options WHERE optionid='$correctansid'") or die('Error197');
-                                    $row2       = mysqli_fetch_array($q3);
-                                    $row3       = mysqli_fetch_array($q4);
-                                    $ans        = $row2['option'];
-                                    $correctans = $row3['option'];
-                                } else {
-                                    $q3 = mysqli_query($con, "SELECT * FROM answer WHERE qid='$qid'") or die('Error197');
-                                    $row1         = mysqli_fetch_array($q3);
-                                    $correctansid = $row1['ansid'];
-                                    $q4 = mysqli_query($con, "SELECT * FROM options WHERE optionid='$correctansid'") or die('Error197');
-                                    $row2       = mysqli_fetch_array($q4);
-                                    $correctans = $row2['option'];
-                                    $ans        = "Unanswered";
-                                }
-                                if ($correctans == $ans && $ans != "Unanswered") {
-                                    echo '<li><div style="font-size:16px;font-weight:bold;font-family:calibri;margin-top:20px;background-color:lightgreen;padding:10px;word-wrap:break-word;border:2px solid darkgreen;border-radius:10px;">' . $question . ' <span class="glyphicon glyphicon-ok" style="color:darkgreen"></span></div><br />';
-                                    echo '<font style="font-size:14px;color:darkgreen"><b>Your Answer: </b></font><font style="font-size:14px;">' . $ans . '</font><br />';
-                                    echo '<font style="font-size:14px;color:darkgreen"><b>Correct Answer: </b></font><font style="font-size:14px;">' . $correctans . '</font><br />';
-                                } else if ($ans == "Unanswered") {
-                                    echo '<li><div style="font-size:16px;font-weight:bold;font-family:calibri;margin-top:20px;background-color:#f7f576;padding:10px;word-wrap:break-word;border:2px solid #b75a0e;border-radius:10px;">' . $question . ' </div><br />';
-                                    echo '<font style="font-size:14px;color:darkgreen"><b>Correct Answer: </b></font><font style="font-size:14px;">' . $correctans . '</font><br />';
-                                } else {
-                                    echo '<li><div style="font-size:16px;font-weight:bold;font-family:calibri;margin-top:20px;background-color:#f99595;padding:10px;word-wrap:break-word;border:2px solid darkred;border-radius:10px;">' . $question . ' <span class="glyphicon glyphicon-remove" style="color:red"></span></div><br />';
-                                    echo '<font style="font-size:14px;color:darkgreen"><b>Your Answer: </b></font><font style="font-size:14px;">' . $ans . '</font><br />';
-                                    echo '<font style="font-size:14px;color:red"><b>Correct Answer: </b></font><font style="font-size:14px;">' . $correctans . '</font><br />';
-                                }
-                                echo "<br /></li>";
-                            }
-                            echo '</ol>';
-                            echo "</div>";
+                            // echo '<tr></tr></table></div><div class="panel"><br /><h3 align="center" style="font-family:calibri">:: Detailed Analysis ::</h3><br /><ol style="font-size:20px;font-weight:bold;font-family:calibri;margin-top:20px">';
+                            // $q = mysqli_query($con, "SELECT * FROM questions WHERE eid='$_GET[eid]'") or die('Error197');
+                            // while ($row = mysqli_fetch_array($q)) {
+                            //     $question = $row['qns'];
+                            //     $qid      = $row['qid'];
+                            //     $q2 = mysqli_query($con, "SELECT * FROM user_answer WHERE eid='$_GET[eid]' AND qid='$qid' AND username='$_SESSION[username]'") or die('Error197');
+                            //     if (mysqli_num_rows($q2) > 0) {
+                            //         $row1         = mysqli_fetch_array($q2);
+                            //         $ansid        = $row1['ans'];
+                            //         $correctansid = $row1['correctans'];
+                            //         $q3 = mysqli_query($con, "SELECT * FROM options WHERE optionid='$ansid'") or die('Error197');
+                            //         $q4 = mysqli_query($con, "SELECT * FROM options WHERE optionid='$correctansid'") or die('Error197');
+                            //         $row2       = mysqli_fetch_array($q3);
+                            //         $row3       = mysqli_fetch_array($q4);
+                            //         $ans        = $row2['option'];
+                            //         $correctans = $row3['option'];
+                            //     } else {
+                            //         $q3 = mysqli_query($con, "SELECT * FROM answer WHERE qid='$qid'") or die('Error197');
+                            //         $row1         = mysqli_fetch_array($q3);
+                            //         $correctansid = $row1['ansid'];
+                            //         $q4 = mysqli_query($con, "SELECT * FROM options WHERE optionid='$correctansid'") or die('Error197');
+                            //         $row2       = mysqli_fetch_array($q4);
+                            //         $correctans = $row2['option'];
+                            //         $ans        = "Unanswered";
+                            //     }
+                            //     if ($correctans == $ans && $ans != "Unanswered") {
+                            //         echo '<li><div style="font-size:16px;font-weight:bold;font-family:calibri;margin-top:20px;background-color:lightgreen;padding:10px;word-wrap:break-word;border:2px solid darkgreen;border-radius:10px;">' . $question . ' <span class="glyphicon glyphicon-ok" style="color:darkgreen"></span></div><br />';
+                            //         echo '<font style="font-size:14px;color:darkgreen"><b>Your Answer: </b></font><font style="font-size:14px;">' . $ans . '</font><br />';
+                            //         echo '<font style="font-size:14px;color:darkgreen"><b>Correct Answer: </b></font><font style="font-size:14px;">' . $correctans . '</font><br />';
+                            //     } else if ($ans == "Unanswered") {
+                            //         echo '<li><div style="font-size:16px;font-weight:bold;font-family:calibri;margin-top:20px;background-color:#f7f576;padding:10px;word-wrap:break-word;border:2px solid #b75a0e;border-radius:10px;">' . $question . ' </div><br />';
+                            //         echo '<font style="font-size:14px;color:darkgreen"><b>Correct Answer: </b></font><font style="font-size:14px;">' . $correctans . '</font><br />';
+                            //     } else {
+                            //         echo '<li><div style="font-size:16px;font-weight:bold;font-family:calibri;margin-top:20px;background-color:#f99595;padding:10px;word-wrap:break-word;border:2px solid darkred;border-radius:10px;">' . $question . ' <span class="glyphicon glyphicon-remove" style="color:red"></span></div><br />';
+                            //         echo '<font style="font-size:14px;color:darkgreen"><b>Your Answer: </b></font><font style="font-size:14px;">' . $ans . '</font><br />';
+                            //         echo '<font style="font-size:14px;color:red"><b>Correct Answer: </b></font><font style="font-size:14px;">' . $correctans . '</font><br />';
+                            //     }
+                            //     echo "<br /></li>";
+                            // }
+                            // echo '</ol>';
+                            // echo "</div>";
                         } else {
                             die("Thats a 404 Error bro. You are trying to access a wrong page");
                         }
@@ -571,7 +584,12 @@ var countdownTimer = setInterval(\'secondPassed()\', 1000);
                         }
                         echo '</tr></table></div>';
                     }
+
                     ?>
+                    <!-- <script>
+                        setTimeout("location.href = 'logout.php?q=account.php';", 1500);
+                    </script> -->
+
                 </div>
             </div>
         </div>
