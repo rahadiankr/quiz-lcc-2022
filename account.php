@@ -335,7 +335,7 @@ var countdownTimer = setInterval(\'secondPassed()\', 1000);
                                 while ($row = mysqli_fetch_array($q)) {
                                     $option   = stripslashes($row['option']);
                                     $optionid = $row['optionid'];
-                                    echo '<div class="funkyradio-success"><input type="radio" id="' . $optionid . '" name="ans" value="' . $optionid . '" onclick="enable()"> <label for="' . $optionid . '" style="width:50%"><div style="color:black;font-size:12px;word-wrap:break-word">&nbsp;&nbsp;' . $option . '</div></label></div>';
+                                    echo '<div class="funkyradio-success"><input type="radio" id="' . $optionid . '" name="ans" value="' . $optionid . '" onclick="enable()"> <label for="' . $optionid . '" style="width:90%"><div style="color:black;font-size:12px;word-wrap:break-word">&nbsp;&nbsp;' . $option . '</div></label></div>';
                                 }
                                 echo '</div>';
                                 if ($_GET["t"] > $_GET["n"] && $_GET["n"] != 1) {
