@@ -103,7 +103,6 @@ include_once 'dbConnection.php';
                                 <td style="vertical-align:middle"><b>Benar</b></td>
                                 <td style="vertical-align:middle"><b>Salah</b></td>
                                 <td style="vertical-align:middle"><b>Nilai Total</b></td>
-                                <td style="vertical-align:middle"><b>Waktu</b></td>
                                 <td style="vertical-align:middle"><b>Aksi</b></td>
                                 </tr>';
                         $c = 1;
@@ -117,7 +116,7 @@ include_once 'dbConnection.php';
                             $q12 = mysqli_query($con, "SELECT score FROM history WHERE eid='$eid' AND username='$username'") or die('Error98');
                             $rowcount = mysqli_num_rows($q12);
                             if ($rowcount == 0) {
-                                echo '<tr><td style="vertical-align:middle">' . $c++ . '</td><td style="vertical-align:middle">' . $title . '</td><td style="vertical-align:middle">' . $total . '</td><td style="vertical-align:middle">+' . $correct . '</td><td style="vertical-align:middle">-' . $wrong . '</td><td style="vertical-align:middle">' . $correct * $total . '</td><td style="vertical-align:middle">'  . $time . '&nbsp;min</td>
+                                echo '<tr><td style="vertical-align:middle">' . $c++ . '</td><td style="vertical-align:middle">' . $title . '</td><td style="vertical-align:middle">' . $total . '</td><td style="vertical-align:middle">+' . $correct . '</td><td style="vertical-align:middle">-' . $wrong . '</td><td style="vertical-align:middle">' . $correct * $total . '</td>
   <td style="vertical-align:middle"><b><a href="account.php?q=quiz&step=2&eid=' . $eid . '&n=1&t=' . $total . '&start=start" class="btn" style="color:#FFFFFF;background:darkgreen;font-size:12px;padding: 3px;padding-left: 5px;padding-right: 5px;"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>&nbsp;<span><b>Mulai</b></span></a></b></td></tr>';
                             } else {
                                 $q = mysqli_query($con, "SELECT * FROM history WHERE username='$_SESSION[username]' AND eid='$eid' ") or die('Error197');
@@ -132,7 +131,7 @@ include_once 'dbConnection.php';
                                 }
                                 $remaining = (($ttimec * 60) - ((time() - $timec)));
                                 if ($remaining > 0 && $qstatus == "enabled" && $status == "ongoing") {
-                                    echo '<tr style="color:darkgreen"><td style="vertical-align:middle">' . $c++ . '</td><td style="vertical-align:middle">' . $title . '&nbsp;<span title="Kuis ini telah kamu kerjakan." class="glyphicon glyphicon-ok" aria-hidden="true"></span></td><td style="vertical-align:middle">' . $total . '</td><td style="vertical-align:middle">+' . $correct . '</td><td style="vertical-align:middle">-' . $wrong . '</td><td style="vertical-align:middle">' . $correct * $total . '</td><td style="vertical-align:middle">' . $time . '&nbsp;min</td>
+                                    echo '<tr style="color:darkgreen"><td style="vertical-align:middle">' . $c++ . '</td><td style="vertical-align:middle">' . $title . '&nbsp;<span title="Kuis ini telah kamu kerjakan." class="glyphicon glyphicon-ok" aria-hidden="true"></span></td><td style="vertical-align:middle">' . $total . '</td><td style="vertical-align:middle">+' . $correct . '</td><td style="vertical-align:middle">-' . $wrong . '</td><td style="vertical-align:middle">' . $correct * $total . '</td>
   <td style="vertical-align:middle"><b><a href="account.php?q=quiz&step=2&eid=' . $eid . '&n=1&t=' . $total . '&start=start" class="btn" style="margin:0px;background:darkorange;color:white;padding: 5px 5px;">&nbsp;<span class="title1"><b>Lanjutkan</b></span></a></b></td></tr>';
                                 } else {
                                     echo '<tr style="color:darkgreen"><td style="vertical-align:middle">' . $c++ . '</td><td style="vertical-align:middle">' . $title . '&nbsp;<span title="Kuis ini telah kamu kerjakan." class="glyphicon glyphicon-ok" aria-hidden="true"></span></td><td style="vertical-align:middle">' . $total . '</td><td style="vertical-align:middle">+' . $time . '&nbsp;min</td>
