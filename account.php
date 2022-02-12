@@ -51,7 +51,7 @@ include_once 'dbConnection.php';
                     echo '<span class="pull-right top title1" >
                     <span style="color:white">
                     <span class="glyphicon glyphicon-user" aria-hidden="true">
-                    <span class="log log1" style="color:lightyellow">' . $username . '&nbsp;&nbsp;|&nbsp;&nbsp;<a href="logout.php?q=account.php" style="color:lightyellow"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;Logout</button></a></span>';
+                    <span class="log log1" style="color:lightyellow">' . $username . '&nbsp;&nbsp;|&nbsp;&nbsp;<a href="logout.php?q=account.php" style="color:lightyellow"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;Keluar</button></a></span>';
                 }
                 ?>
             </div>
@@ -74,7 +74,7 @@ include_once 'dbConnection.php';
                         <li <?php
                             if (@$_GET['q'] == 1)
                                 echo 'class="active"';
-                            ?>><a href="account.php?q=1"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;Home<span class="sr-only">(current)</span></a></li>
+                            ?>><a href="account.php?q=1"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;Beranda<span class="sr-only">(current)</span></a></li>
                         <!-- <li <?php
                                     if (@$_GET['q'] == 2)
                                         echo 'class="active"';
@@ -100,11 +100,11 @@ include_once 'dbConnection.php';
                                 <td style="vertical-align:middle"><b>No.</b></td>
                                 <td style="vertical-align:middle"><b>Soal</b></td>
                                 <td style="vertical-align:middle"><b>Jumlah Soal</b></td>
-                                <td style="vertical-align:middle"><b>Jawaban Benar</b></td>
-                                <td style="vertical-align:middle"><b>Jawaban Salah</b></td>
+                                <td style="vertical-align:middle"><b>Benar</b></td>
+                                <td style="vertical-align:middle"><b>Salah</b></td>
                                 <td style="vertical-align:middle"><b>Nilai Total</b></td>
                                 <td style="vertical-align:middle"><b>Waktu</b></td>
-                                <td style="vertical-align:middle"><b>Action</b></td>
+                                <td style="vertical-align:middle"><b>Aksi</b></td>
                                 </tr>';
                         $c = 1;
                         while ($row = mysqli_fetch_array($result)) {
@@ -118,7 +118,7 @@ include_once 'dbConnection.php';
                             $rowcount = mysqli_num_rows($q12);
                             if ($rowcount == 0) {
                                 echo '<tr><td style="vertical-align:middle">' . $c++ . '</td><td style="vertical-align:middle">' . $title . '</td><td style="vertical-align:middle">' . $total . '</td><td style="vertical-align:middle">+' . $correct . '</td><td style="vertical-align:middle">-' . $wrong . '</td><td style="vertical-align:middle">' . $correct * $total . '</td><td style="vertical-align:middle">'  . $time . '&nbsp;min</td>
-  <td style="vertical-align:middle"><b><a href="account.php?q=quiz&step=2&eid=' . $eid . '&n=1&t=' . $total . '&start=start" class="btn" style="color:#FFFFFF;background:darkgreen;font-size:12px;padding: 3px;padding-left: 5px;padding-right: 5px;"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>&nbsp;<span><b>Start</b></span></a></b></td></tr>';
+  <td style="vertical-align:middle"><b><a href="account.php?q=quiz&step=2&eid=' . $eid . '&n=1&t=' . $total . '&start=start" class="btn" style="color:#FFFFFF;background:darkgreen;font-size:12px;padding: 3px;padding-left: 5px;padding-right: 5px;"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>&nbsp;<span><b>Mulai</b></span></a></b></td></tr>';
                             } else {
                                 $q = mysqli_query($con, "SELECT * FROM history WHERE username='$_SESSION[username]' AND eid='$eid' ") or die('Error197');
                                 while ($row = mysqli_fetch_array($q)) {
@@ -132,11 +132,11 @@ include_once 'dbConnection.php';
                                 }
                                 $remaining = (($ttimec * 60) - ((time() - $timec)));
                                 if ($remaining > 0 && $qstatus == "enabled" && $status == "ongoing") {
-                                    echo '<tr style="color:darkgreen"><td style="vertical-align:middle">' . $c++ . '</td><td style="vertical-align:middle">' . $title . '&nbsp;<span title="This quiz is already solve by you" class="glyphicon glyphicon-ok" aria-hidden="true"></span></td><td style="vertical-align:middle">' . $total . '</td><td style="vertical-align:middle">+' . $correct . '</td><td style="vertical-align:middle">-' . $wrong . '</td><td style="vertical-align:middle">' . $correct * $total . '</td><td style="vertical-align:middle">' . $time . '&nbsp;min</td>
-  <td style="vertical-align:middle"><b><a href="account.php?q=quiz&step=2&eid=' . $eid . '&n=1&t=' . $total . '&start=start" class="btn" style="margin:0px;background:darkorange;color:white;padding: 5px 5px;">&nbsp;<span class="title1"><b>Continue</b></span></a></b></td></tr>';
+                                    echo '<tr style="color:darkgreen"><td style="vertical-align:middle">' . $c++ . '</td><td style="vertical-align:middle">' . $title . '&nbsp;<span title="Kuis ini telah kamu kerjakan." class="glyphicon glyphicon-ok" aria-hidden="true"></span></td><td style="vertical-align:middle">' . $total . '</td><td style="vertical-align:middle">+' . $correct . '</td><td style="vertical-align:middle">-' . $wrong . '</td><td style="vertical-align:middle">' . $correct * $total . '</td><td style="vertical-align:middle">' . $time . '&nbsp;min</td>
+  <td style="vertical-align:middle"><b><a href="account.php?q=quiz&step=2&eid=' . $eid . '&n=1&t=' . $total . '&start=start" class="btn" style="margin:0px;background:darkorange;color:white;padding: 5px 5px;">&nbsp;<span class="title1"><b>Lanjutkan</b></span></a></b></td></tr>';
                                 } else {
-                                    echo '<tr style="color:darkgreen"><td style="vertical-align:middle">' . $c++ . '</td><td style="vertical-align:middle">' . $title . '&nbsp;<span title="This quiz is already solve by you" class="glyphicon glyphicon-ok" aria-hidden="true"></span></td><td style="vertical-align:middle">' . $total . '</td><td style="vertical-align:middle">+' . $time . '&nbsp;min</td>
-                                  <td style="vertical-align:middle"><b><a href="account.php?q=result&eid=' . $eid . '" class="btn" style="margin:0px;background:darkred;color:white;padding: 5px 5px;">&nbsp;<span class="title1"><b>View Result</b></span></a></b></td></tr>';
+                                    echo '<tr style="color:darkgreen"><td style="vertical-align:middle">' . $c++ . '</td><td style="vertical-align:middle">' . $title . '&nbsp;<span title="Kuis ini telah kamu kerjakan." class="glyphicon glyphicon-ok" aria-hidden="true"></span></td><td style="vertical-align:middle">' . $total . '</td><td style="vertical-align:middle">+' . $time . '&nbsp;min</td>
+                                  <td style="vertical-align:middle"><b><a href="account.php?q=result&eid=' . $eid . '" class="btn" style="margin:0px;background:darkred;color:white;padding: 5px 5px;">&nbsp;<span class="title1"><b>Hasil</b></span></a></b></td></tr>';
                                 }
                             }
                         }
@@ -269,7 +269,7 @@ include_once 'dbConnection.php';
                                 echo '<script>
 var seconds = ' . $remaining . ' ;
 function end(){
-  data = prompt("Are you sure to end this Quiz? Remember, once finished, you wont be able to continue anymore and final results will be displayed. If you want to continue then enter \\"yes\\" in the textbox below and press enter");
+  data = prompt("Apakah anda yakin mengakhiri kuiz?, jika yakin ketik \\"yes\\" dikolom bawah ini");
   if(data=="yes"){
     window.location ="account.php?q=quiz&step=2&eid=' . $_GET["eid"] . '&n=' . $_GET["n"] . '&t=' . isset($_GET["total"]) . '&endquiz=end";
     
@@ -328,7 +328,7 @@ var countdownTimer = setInterval(\'secondPassed()\', 1000);
                                     $ans = "";
                                 }
                                 if (strlen($ans) > 0) {
-                                    echo "<font style=\"color:green;font-size:12px;font-weight:bold\">Selected answer: </font><font style=\"color:#565252;font-size:12px;\">" . $ans . "</font>&nbsp;&nbsp;<a href=update.php?q=quiz&step=2&eid=$eid&n=$sn&t=$total&qid=$qid&delanswer=delanswer><span class=\"glyphicon glyphicon-remove\" style=\"font-size:12px;color:darkred\"></span></a><br /><br />";
+                                    echo "<font style=\"color:green;font-size:12px;font-weight:bold\">Jawaban Terpilih : </font><font style=\"color:#565252;font-size:12px;\">" . $ans . "</font>&nbsp;&nbsp;<a href=update.php?q=quiz&step=2&eid=$eid&n=$sn&t=$total&qid=$qid&delanswer=delanswer><span class=\"glyphicon glyphicon-remove\" style=\"font-size:12px;color:darkred\"></span></a><br /><br />";
                                 }
                                 echo '<div class="funkyradio">';
                                 $q = mysqli_query($con, "SELECT * FROM options WHERE qid='$qid' ");
@@ -339,9 +339,9 @@ var countdownTimer = setInterval(\'secondPassed()\', 1000);
                                 }
                                 echo '</div>';
                                 if ($_GET["t"] > $_GET["n"] && $_GET["n"] != 1) {
-                                    echo '<br /><a href="account.php?q=quiz&step=2&eid=' . $eid . '&n=' . ($sn - 1) . '&t=' . $total . '" class="" style="height:30px"><span class="" aria-hidden="true"  style="font-size:12px"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-default" disabled="true" id="sbutton" style="height:30px"><span class="glyphicon glyphicon-lock" style="font-size:12px" aria-hidden="true"></span><font style="font-size:12px;font-weight:bold"> Lock</font></button>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-default" onclick="frmreset()" style="height:30px"></span><font style="font-size:12px;font-weight:bold">Reset</font></button>&nbsp;&nbsp;&nbsp;&nbsp;<a href="account.php?q=quiz&step=2&eid=' . $eid . '&n=' . ($sn + 1) . '&t=' . $total . '" class="btn btn-primary" style="height:30px"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"  style="font-size:12px"></span></a></form><br><br>';
+                                    echo '<br /><a href="account.php?q=quiz&step=2&eid=' . $eid . '&n=' . ($sn - 1) . '&t=' . $total . '" class="" style="height:30px"><span class="" aria-hidden="true"  style="font-size:12px"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-default" disabled="true" id="sbutton" style="height:30px"><span class="glyphicon glyphicon-lock" style="font-size:12px" aria-hidden="true"></span><font style="font-size:12px;font-weight:bold"> Lock</font></button>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-default" onclick="frmreset()" style="height:30px"></span><font style="font-size:12px;font-weight:bold">Ulang</font></button>&nbsp;&nbsp;&nbsp;&nbsp;<a href="account.php?q=quiz&step=2&eid=' . $eid . '&n=' . ($sn + 1) . '&t=' . $total . '" class="btn btn-primary" style="height:30px"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"  style="font-size:12px"></span></a></form><br><br>';
                                 } else if ($_GET["t"] == $_GET["n"]) {
-                                    echo '<br /><a href="account.php?q=quiz&step=2&eid=' . $eid . '&n=' . ($sn - 1) . '&t=' . $total . '" class="" style="height:30px"><span class="" aria-hidden="true"  style="font-size:12px"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-default" disabled="true" id="sbutton" style="height:30px"><span class="glyphicon glyphicon-lock" style="font-size:12px" aria-hidden="true"></span><font style="font-size:12px;font-weight:bold"> Lock</font></button>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-default" onclick="frmreset()" style="height:30px"></span><font style="font-size:12px;font-weight:bold">Reset</font></button>&nbsp;&nbsp;&nbsp;&nbsp;</form><br><br>';
+                                    echo '<br /><a href="account.php?q=quiz&step=2&eid=' . $eid . '&n=' . ($sn - 1) . '&t=' . $total . '" class="" style="height:30px"><span class="" aria-hidden="true"  style="font-size:12px"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-default" disabled="true" id="sbutton" style="height:30px"><span class="glyphicon glyphicon-lock" style="font-size:12px" aria-hidden="true"></span><font style="font-size:12px;font-weight:bold"> Lock</font></button>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-default" onclick="frmreset()" style="height:30px"></span><font style="font-size:12px;font-weight:bold">Ulang</font></button>&nbsp;&nbsp;&nbsp;&nbsp;</form><br><br>';
                                 } else if ($_GET["t"] > $_GET["n"] && $_GET["n"] == 1) {
                                     echo '<br />&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-default" disabled="true" id="sbutton" style="height:30px"><span class="glyphicon glyphicon-lock" style="font-size:12px" aria-hidden="true"></span><font style="font-size:12px;font-weight:bold"> Lock<font></button>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-default" onclick="frmreset()" style="height:30px"></span><font style="font-size:12px;font-weight:bold">Reset</font></button>&nbsp;&nbsp;&nbsp;&nbsp;<a href="account.php?q=quiz&step=2&eid=' . $eid . '&n=' . ($sn + 1) . '&t=' . $total . '" class="btn btn-primary" style="height:30px"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"  style="font-size:12px"></span></a></form><br><br>';
                                 } else {
@@ -437,19 +437,18 @@ var countdownTimer = setInterval(\'secondPassed()\', 1000);
                         }
                         if ($status == "finished") {
                             echo '<div class="panel">
-<center><h1 class="title" style="color:#660033">Result</h1><center><br /><table class="table table-striped title1" style="font-size:20px;font-weight:1000;">';
-                            echo '<tr style="color:darkblue"><td style="vertical-align:middle">Total Questions</td><td style="vertical-align:middle">' . $total . '</td></tr>
-      <tr style="color:darkgreen"><td style="vertical-align:middle">Correct Answer&nbsp;<span class="glyphicon glyphicon-ok-arrow" aria-hidden="true"></span></td><td style="vertical-align:middle">' . $r . '</td></tr> 
-    <tr style="color:red"><td style="vertical-align:middle">Wrong Answer&nbsp;<span class="glyphicon glyphicon-remove-arrow" aria-hidden="true"></span></td><td style="vertical-align:middle">' . $w . '</td></tr>
-    <tr style="color:orange"><td style="vertical-align:middle">Unattempted&nbsp;<span class="glyphicon glyphicon-ban-arrow" aria-hidden="true"></span></td><td style="vertical-align:middle">' . ($total - $r - $w) . '</td></tr>
-    <tr style="color:darkblue"><td style="vertical-align:middle">Score&nbsp;<span class="glyphicon glyphicon-star" aria-hidden="true"></span></td><td style="vertical-align:middle">' . $s . '</td></tr>';
+<center><h1 class="title" style="color:#660033">Hasil</h1><center><br /><table class="table table-striped title1" style="font-size:20px;font-weight:1000;">';
+                            echo '<tr style="color:darkblue"><td style="vertical-align:middle">Jumlah Soal</td><td style="vertical-align:middle">' . $total . '</td></tr>
+      <tr style="color:darkgreen"><td style="vertical-align:middle">Benar&nbsp;<span class="glyphicon glyphicon-ok-arrow" aria-hidden="true"></span></td><td style="vertical-align:middle">' . $r . '</td></tr> 
+    <tr style="color:red"><td style="vertical-align:middle">Salah&nbsp;<span class="glyphicon glyphicon-remove-arrow" aria-hidden="true"></span></td><td style="vertical-align:middle">' . $w . '</td></tr>
+    <tr style="color:orange"><td style="vertical-align:middle">Kosong&nbsp;<span class="glyphicon glyphicon-ban-arrow" aria-hidden="true"></span></td><td style="vertical-align:middle">' . ($total - $r - $w) . '</td></tr>
+    <tr style="color:darkblue"><td style="vertical-align:middle">Nilai&nbsp;<span class="glyphicon glyphicon-star" aria-hidden="true"></span></td><td style="vertical-align:middle">' . $s . '</td></tr>';
                             echo "<script>
                             logoutt();
                             </script>";
                             $q = mysqli_query($con, "SELECT * FROM rank WHERE  username='$username' ") or die('Error157');
                             while ($row = mysqli_fetch_array($q)) {
                                 $s = $row['score'];
-                                echo '<tr style="color:#990000"><td style="vertical-align:middle">Overall Score&nbsp;<span class="glyphicon glyphicon-stats" aria-hidden="true"></span></td><td style="vertical-align:middle">' . $s . '</td></tr>';
                             }
                             // echo '<tr></tr></table></div><div class="panel"><br /><h3 align="center" style="font-family:calibri">:: Detailed Analysis ::</h3><br /><ol style="font-size:20px;font-weight:bold;font-family:calibri;margin-top:20px">';
                             // $q = mysqli_query($con, "SELECT * FROM questions WHERE eid='$_GET[eid]'") or die('Error197');
@@ -500,7 +499,7 @@ var countdownTimer = setInterval(\'secondPassed()\', 1000);
                         $q = mysqli_query($con, "SELECT * FROM history WHERE username='$username' AND status='finished' ORDER BY date DESC ") or die('Error197');
                         echo '<div class="panel title">
 <table class="table table-striped title1" >
-<tr><td style="vertical-align:middle"><b>S.N.</b></td><td style="vertical-align:middle"><b>Quiz</b></td><td style="vertical-align:middle"><b>Total Questions</b></td><td style="vertical-align:middle"><b>Right</b></td><td style="vertical-align:middle"><b>Wrong<b></td><td style="vertical-align:middle"><b>Unattempted<b></td><td style="vertical-align:middle"><b>Score</b></td><td style="vertical-align:middle"><b>Action<b></td></tr>';
+<tr><td style="vertical-align:middle"><b>S.N.</b></td><td style="vertical-align:middle"><b>Soal</b></td><td style="vertical-align:middle"><b>Jumlah Soal</b></td><td style="vertical-align:middle"><b>Benar</b></td><td style="vertical-align:middle"><b>Salah<b></td><td style="vertical-align:middle"><b>Kosong<b></td><td style="vertical-align:middle"><b>Niali</b></td><td style="vertical-align:middle"><b>Aksi<b></td></tr>';
                         $c = 0;
                         while ($row = mysqli_fetch_array($q)) {
                             $eid = $row['eid'];
@@ -513,7 +512,7 @@ var countdownTimer = setInterval(\'secondPassed()\', 1000);
                                 $total = $row['total'];
                             }
                             $c++;
-                            echo '<tr><td style="vertical-align:middle">' . $c . '</td><td style="vertical-align:middle">' . $title . '</td><td style="vertical-align:middle">' . $total . '</td><td style="vertical-align:middle">' . $r . '</td><td style="vertical-align:middle">' . $w . '</td><td style="vertical-align:middle">' . ($total - $r - $w) . '</td><td style="vertical-align:middle">' . $s . '</td><td style="vertical-align:middle"><b><a href="account.php?q=result&eid=' . $eid . '" class="btn" style="margin:0px;background:darkred;color:white">&nbsp;<span class="title1"><b>View Result</b></td></tr>';
+                            echo '<tr><td style="vertical-align:middle">' . $c . '</td><td style="vertical-align:middle">' . $title . '</td><td style="vertical-align:middle">' . $total . '</td><td style="vertical-align:middle">' . $r . '</td><td style="vertical-align:middle">' . $w . '</td><td style="vertical-align:middle">' . ($total - $r - $w) . '</td><td style="vertical-align:middle">' . $s . '</td><td style="vertical-align:middle"><b><a href="account.php?q=result&eid=' . $eid . '" class="btn" style="margin:0px;background:darkred;color:white">&nbsp;<span class="title1"><b>Hasil</b></td></tr>';
                         }
                         echo '</table></div>';
                     }
@@ -594,42 +593,35 @@ var countdownTimer = setInterval(\'secondPassed()\', 1000);
             </div>
         </div>
     </div>
-    <div class="row footer">
-        <div class="col-md-2 box"></div>
-        <div class="col-md-3 box">
-            <b href="#" style="color:lightyellow;" onmouseover="this.style('color:yellow')" target="new">Organized by ITC 2022</b>
-        </div>
-        <!-- Modal For Developers-->
-        <div class="modal fade title1" id="developers">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                        <h4 class="modal-title" style="font-family:'typo' "><span style="color:orange">Muki InfoTech</span></h4>
-                    </div>
 
-                    <div class="modal-body">
-                        <p>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <img src="image/muki.jpg" width=100 height=100 alt="Mugunthan" class="img-rounded">
-                            </div>
-                            <div class="col-md-5">
-                                <a href="" style="color:#202020; font-family:'typo' ; font-size:18px" title="">Muki Infotech</a>
-                                <h4 style="color:#202020; font-family:'typo' ;font-size:16px" class="title1">+91 9514444471</h4>
-                                <h4 style="font-family:'typo' ">mugunthkumar99@gmail.com</h4>
-                                <h4 style="font-family:'typo' ">Nandha College of Technology ,Erode </h4>
-                            </div>
+    <!-- Modal For Developers-->
+    <div class="modal fade title1" id="developers">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" style="font-family:'typo' "><span style="color:orange">Muki InfoTech</span></h4>
+                </div>
+
+                <div class="modal-body">
+                    <p>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src="image/muki.jpg" width=100 height=100 alt="Mugunthan" class="img-rounded">
                         </div>
-                        </p>
+                        <div class="col-md-5">
+                            <a href="" style="color:#202020; font-family:'typo' ; font-size:18px" title="">Muki Infotech</a>
+                            <h4 style="color:#202020; font-family:'typo' ;font-size:16px" class="title1">+91 9514444471</h4>
+                            <h4 style="font-family:'typo' ">mugunthkumar99@gmail.com</h4>
+                            <h4 style="font-family:'typo' ">Nandha College of Technology ,Erode </h4>
+                        </div>
                     </div>
+                    </p>
+                </div>
 
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
-        <div class="col-md-2 box">
-            <a href="feedback.php" style="color:lightyellow;text-decoration:underline" onmouseover="this.style('color:yellow')" target="new">Feedback</a>
-        </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 
 </body>
 
