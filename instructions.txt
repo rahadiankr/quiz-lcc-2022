@@ -1,9 +1,16 @@
-Selamat datang.
-You can see the history of test taken and scores in the 'History' section.
-To start the test, click on 'Start'.
-Once the test is started the timer would run irrespective of your logged in or logged our status. So it is recommended not to logout before test completion.
-To mark an answer you need to select it and press the 'Lock' button. Upon locking, the selected answer would be displayed and the question will be marked "green"
-To delete an answer press <span style="color:darkred:font-size:12px" class="glyphicon glyphicon-remove"></span>.
-Use the navigation buttons to navigate through different questions.
-The marks for correct and incorrect answer are listed above in the table. 0 marks would be awarded for the questions that are "not marked" (having "red" status).
-If you get some error, you can contact us via <a href=feedback.php>this form</a>.
+1. Peserta lomba memasuki link zoom yang telah dibagikan 30 menit sebelum acara perlombaan dimulai dengan menggunakan pakaian seragam sekolah masing-masing.
+2. Jika terjadi kendala, peserta diharap dapat menghubungi panitia maksimal 1 jam sebelum acara dimulai.
+3. Peserta diwajibkan mengisi daftar hadir atau absensi yang telah disediakan pada live chat setelah memasuki room zoom yang ada.
+4. Peserta yang hendak izin ke kamar mandi atau alasan lainnya, sebelum lomba dimulai diharapkan untuk izin melalui live chat terlebih dahulu kepada panitia.
+5. Toleransi keterlambatan maksimal 15 menit sebelum LCC dimulai, selebihnya peserta dinyatakan gugur.
+6. Selama lomba berlangsung, peserta :
+    - Diwajibkan untuk selalu mengaktifkan kamera.
+    - Dilarang bekerja sama dengan peserta lain.
+    - Dilarang mencari jawaban di internet.
+    - Dilarang on-mic dan membuat kegaduhan pada saat lomba berlangsung (khususnya babak penyisihan).
+7. Apabila ada peserta yang melanggar aturan pada poin 6 maka : 
+    - Akan dimute oleh panitia apabila masih membuat kegaduhan pada saat lomba berlangsung.
+    - Akan mendapat peringatan dengan pengurangan 10 poin. Maksimal 2× peringatan.
+    - Jika melebihi 2× peringatan maka akan didiskualifikasi.
+8. Ketentuan pemenang sudah menjadi tanggung jawab Panitia dan Juri, serta tidak dapat diganggu gugat.
+9. Peraturan yang belum tercantum / tertera pada peraturan yang ada, akan diputuskan selanjutnya bila dibutuhkan.

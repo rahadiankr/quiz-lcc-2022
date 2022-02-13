@@ -82,10 +82,7 @@
                             if (@$_GET['q'] == 2)
                                 echo 'class="active"';
                             ?>><a href="dash.php?q=2">Leaderboard</a></li>
-                        <li <?php
-                            if (@$_GET['q'] == 3)
-                                echo 'class="active"';
-                            ?>><a href="dash.php?q=3">Feedback</a></li>
+
                         <li <?php
                             if (@$_GET['q'] == 4)
                                 echo 'class="active"';
