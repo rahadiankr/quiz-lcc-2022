@@ -261,3 +261,16 @@ hr {
         font-size: 15px;
     }
 }
+.imageResponsive {
+    width: 100%;
+    height: auto;
+    margin-top: 40px;
+}
+@media  screen and (max-width: 600px) {
+    .imageResponsive {
+        width: 100%;
+        height: auto;
+        margin-top: 40px;
+        display:none;
+    }
+}

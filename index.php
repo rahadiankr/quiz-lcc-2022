@@ -132,7 +132,9 @@ if (isset($_SESSION['username']) && (!isset($_SESSION['key']))) {
   <div class="bg1">
     <div class="row">
 
-      <div class="col-md-7"></div>
+      <div class="col-md-7">
+        <img src="./image/anmlogo.gif" class="imageResponsive">
+      </div>
       <div class="col-md-4 panel" style="margin-top: 15px">
         <form class="form-horizontal" name="form" action="sign.php?q=account.php" onSubmit="return validateForm()" method="POST">
           <fieldset>
