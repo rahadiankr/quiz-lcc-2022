@@ -331,11 +331,6 @@ if (isset($_SESSION['username']) && (!isset($_SESSION['key']))) {
       <span href="#" data-target="#login" style="color:lightyellow">Organized by ITC 2022<br><br></span>
     </div>
 
-
-    <div class="col-md-2 box">
-      <a href="feedback.php" style="color:lightyellow;" onmouseover="this.style('color:yellow')" target="new">Feedback</a>
-    </div>
-
     <div class="modal fade" id="login">
       <div class="modal-dialog">
         <div class="modal-content">
