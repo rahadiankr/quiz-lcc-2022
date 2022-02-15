@@ -325,7 +325,7 @@ if (isset($_SESSION['username']) && (!isset($_SESSION['key']))) {
   </div>
   <div class="footer">
     <div class="col-md-5 box">
-      <a href="#" data-toggle="modal" data-target="#login" style="color:lightyellow">Admin Login</a>
+      <!-- <a href="#" data-toggle="modal" data-target="#login" style="color:lightyellow">Admin Login</a> -->
     </div>
     <div class="col-md-3 box">
       <span href="#" data-target="#login" style="color:lightyellow">Organized by ITC 2022<br><br></span>
